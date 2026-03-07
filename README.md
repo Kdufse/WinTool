@@ -1,4 +1,4 @@
-# PC-Toolbox —— 不局限于安卓设备中
+# PC-Toolbox
 PC-Toolbox相对于[ABNToolbox](https://github.com/Kdufse/ABNToolbox)拥有更高的拓展性以及实用性，并且支持的操作远比安卓设备的脚本要高很多很多。
 
 # PC-Toolbox的运行要求：
