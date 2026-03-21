@@ -9,18 +9,22 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Install Module
+        run: |
+          Install-Module -Name 7Zip4Powershell -Scope CurrentUser -Force -AllowClobber
+
       - name: Download Android Platform Tools
         run: |
           mkdir build
-          curl --progress-bar -L  https://googledownloads.cn/android/repository/platform-tools-latest-windows.zip -o build\platform.zip
-          tar -xf "build\platform.zip" -C "build\bin" --strip-components=1
+          Invoke-WebRequest -Uri https://googledownloads.cn/android/repository/platform-tools-latest-windows.zip -OutFile build\platform.zip
+          Expand-7Zip -ArchiveFileName "build\platform.zip" -TargetPath "build\bin"
 
       - name: Other work
         run: |
-          del build\platform.zip
-          del build\lzma.7z
-          copy PC-Toolbox.ps1 build\PC-Toolbox.ps1
-          copy UseCustomPS.bat build\UseCustomPS.bat
+          Remove-Item build\platform.zip
+          Remove-Item build\lzma.7z
+          Copy-Item -Path PC-Toolbox.ps1 -Destination build\PC-Toolbox.ps1
+          Copy-Item -Path UseCustomPS.bat -Destination build\UseCustomPS.bat
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
