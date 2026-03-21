@@ -11,6 +11,7 @@ jobs:
 
       - name: Download Android Platform Tools
         run: |
+          mkdir build
           curl --progress-bar -L  https://googledownloads.cn/android/repository/platform-tools-latest-windows.zip -o build\platform.zip
           tar -xf "build\platform.zip" -C "build\bin" --strip-components=1
 
