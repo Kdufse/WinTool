@@ -1,4 +1,5 @@
 ﻿function Main-Menu {
+Clear-Host
 Write-Host "————————————————————PCToolbox————————————————————"
 Write-Host "                   Power-Shell"
 Write-Host "                    By Kdufse"
@@ -19,6 +20,29 @@ function Goto-Where {
 Write-Host "—————————————————————————————————————————————————"
 Read-Host "按任意键返回主菜单"
 Main-Menu
+}
+
+function Check-PSVersion {
+if ($PSVersionTable.PSVersion.Major -lt 5) {
+    Write-Host "当前 PowerShell 版本不符合PC-Toolbox的运行环境"
+    Write-Host "请你自行下载最新版本的Powershell"
+    Start-Process "https://github.com/PowerShell/PowerShell/releases/latest"
+    Write-Host "安装完成后执行UseCustomPowershell"
+    Pause
+} else {
+    Write-Host "当前 PowerShell 版本符合PC-Toolbox的运行环境"
+}
+
+Pause
+}
+
+function Initialization {
+Clear-Host
+Check-PSVersion
+Write-Host "正在初始化，请稍等"
+Write-Host "正在安装[7Zip4Powershell]模块"
+Install-Module -Name 7Zip4Powershell -Scope CurrentUser -Force
+
 }
 
 function Check-Version {
@@ -271,14 +295,14 @@ Download-File -Url "https://g.blfrp.cn/https://github.com/svoboda18/magiskboot/r
 Download-File -Url "https://gh-proxy.org/https://raw.githubusercontent.com/Kdufse/PC-Toolbox/main/Files/NoHello.kpm" -Output ".\Download\NoHello.KPM"
 
 # 解压文件（使用$null重定向）
-& .\bin\7zdec.exe x ".\Download\kptools.7z" -o"$env:TEMP\7z_temp" | Out-Null
+Expand-7Zip -ArchiveFileName ".\Download\kptools.7z" -TargetPath "$env:TEMP\7z_temp" | Out-Null
 if (Test-Path "$env:TEMP\7z_temp\win") {
     Copy-Item "$env:TEMP\7z_temp\win\*" ".\bin\" -Force
 }
 Remove-Item "$env:TEMP\7z_temp" -Recurse -Force -ErrorAction SilentlyContinue
 
 # 解压magiskboot
-& .\bin\7zdec.exe x ".\Download\magiskboot.7z" -o".\bin\" -y | Out-Null
+Expand-7Zip -ArchiveFileName ".\Download\magiskboot.7z" -TargetPath ".\bin\" | Out-Null
 
 # 检查magiskboot是否存在
 if (-not (Test-Path ".\bin\magiskboot.exe")) {

@@ -14,15 +14,12 @@ jobs:
           curl --progress-bar -L  https://googledownloads.cn/android/repository/platform-tools-latest-windows.zip -o build\platform.zip
           tar -xf "build\platform.zip" -C "build\bin" --strip-components=1
 
-      - name: Download 7Zip CLI
-        run: |
-          curl -progress-bar -L https://github.com/ip7z/7zip/releases/download/26.00/lzma2600.7z -o build\lzma.7z
-          tar -xf build\lzma.7z bin/x64/7zdec.exe --strip-components=2 -C build\bin
-
-      - name: Remove Other Files
+      - name: Other work
         run: |
           del build\platform.zip
           del build\lzma.7z
+          copy PC-Toolbox.ps1 build\PC-Toolbox.ps1
+          copy UseCustomPS.bat build\UseCustomPS.bat
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
