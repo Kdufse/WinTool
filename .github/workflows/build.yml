@@ -22,7 +22,6 @@ jobs:
       - name: Other work
         run: |
           Remove-Item build\platform.zip
-          Remove-Item build\lzma.7z
           Copy-Item -Path PC-Toolbox.ps1 -Destination build\PC-Toolbox.ps1
           Copy-Item -Path UseCustomPS.bat -Destination build\UseCustomPS.bat
 
