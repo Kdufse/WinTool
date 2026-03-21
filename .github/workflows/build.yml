@@ -1,4 +1,4 @@
-name: Build Release
+name: Build PC-Toolbox
 on:
   workflow_dispatch:
 
@@ -24,6 +24,7 @@ jobs:
           Remove-Item build\platform.zip
           Copy-Item -Path PC-Toolbox.ps1 -Destination build\PC-Toolbox.ps1
           Copy-Item -Path UseCustomPS.bat -Destination build\UseCustomPS.bat
+          Copy-Item -Path build\bin\platform\* -Destination build\bin\
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
