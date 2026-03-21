@@ -1,4 +1,4 @@
-name: Build Release PC-Toolbox
+name: Build CI PC-Toolbox
 on:
   workflow_dispatch:
 
@@ -32,13 +32,3 @@ jobs:
           name: PC-Toolbox
           path: build\
           compression-level: 7
-
-      - name: Upload Releases
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./my-app.zip
-          asset_name: my-app.zip
-          asset_content_type: application/zip
