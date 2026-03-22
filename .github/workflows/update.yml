@@ -5,6 +5,12 @@ on:
 jobs:
   fetch-release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+      actions: read
+      checks: read
+      metadata: read
     env:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
     steps:
