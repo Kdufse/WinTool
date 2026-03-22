@@ -10,7 +10,6 @@ jobs:
       packages: read
       actions: read
       checks: read
-      metadata: read
     env:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
     steps:
