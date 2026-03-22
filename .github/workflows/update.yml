@@ -15,36 +15,32 @@ jobs:
           sudo apt install zip
           
       - name: Update Tricky-Store
-        uses: robinraju/release-downloader@v1.12
-        with:
-          repository: "5ec1cff/Tricky-Store"
-          latest: true
-          fileName: "Tricky-Store*"
-          out-file-path: "Update/pctoolbox/TrickyStore.zip"
+        run: |
+          gh release download --latest --repo actions/checkout --pattern 'Tricky-Store*.zip'
+          for file in Tricky-Store*.zip; do
+            mv "$file" "Update/pctoolbox/TrickyStore.zip"
+          done
 
       - name: Update Zygisk-Next
-        uses: robinraju/release-downloader@v1.12
-        with:
-          repository:
-          latest: true
-          fileName: "Zygisk-Next*"
-          out-file-path: "Update/pctoolbox/Zygisk_Modules/Zygisk-Next.zip"
+        run: |
+          gh release download --latest --repo actions/checkout --pattern 'Zygisk-Next*.zip'
+          for file in Zygisk-Next*.zip; do
+            mv "$file" "Update/pctoolbox/Zygisk_Modules/Zygisk-Next.zip"
+          done
 
       - name: Update SuSFS
-        uses: robinraju/release-downloader@v1.12
-        with:
-          repository: "sidex15/susfs4ksu-module"
-          latest: true
-          fileName: "ksu_module_susfs*"
-          out-file-path: "Update/pctoolbox/ksu/SuSFS-1.5.2+.zip"
+        run: |
+          gh release download --latest --repo actions/checkout --pattern 'ksu_module_susfs*.zip'
+          for file in ksu_module_susfs*.zip; do
+            mv "$file" "Update/pctoolbox/SuSFS-1.5.2+.zip"
+          done
 
       - name: Update LSPosed (JingMatrix)
-        uses: robinraju/release-downloader@v1.12
-        with:
-          repository: JingMatrix/LSPosed
-          latest: true
-          fileName: "*release"
-          out-file-path: "Update/pctoolbox/LSPosed.zip"
+        run: |
+          gh release download --latest --repo actions/checkout --pattern 'LSPosed*release.zip'
+          for file in LSPosed*.zip; do
+            mv "$file" "Update/pctoolbox/LSPosed.zip"
+          done
 
       - name: Pack Modules ZIP
         run: |
