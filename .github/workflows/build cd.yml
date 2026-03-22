@@ -1,4 +1,4 @@
-name: [CD]Build PC-Toolbox
+name: CD Build PC-Toolbox
 on:
   workflow_dispatch:
     inputs:
