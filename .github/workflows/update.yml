@@ -16,21 +16,21 @@ jobs:
           
       - name: Update Tricky-Store
         run: |
-          gh release download --latest --repo actions/checkout --pattern 'Tricky-Store*.zip'
+          gh release download --latest --repo 5ec1cff/TrickyStore --pattern 'Tricky-Store*.zip'
           for file in Tricky-Store*.zip; do
             mv "$file" "Update/pctoolbox/TrickyStore.zip"
           done
 
       - name: Update Zygisk-Next
         run: |
-          gh release download --latest --repo actions/checkout --pattern 'Zygisk-Next*.zip'
+          gh release download --latest --repo Dr-TSNG/ZygiskNext --pattern 'Zygisk-Next*.zip'
           for file in Zygisk-Next*.zip; do
             mv "$file" "Update/pctoolbox/Zygisk_Modules/Zygisk-Next.zip"
           done
 
       - name: Update SuSFS
         run: |
-          gh release download --latest --repo actions/checkout --pattern 'ksu_module_susfs*.zip'
+          gh release download --latest --repo sidex15/susfs4ksu-module --pattern 'ksu_module_susfs*.zip'
           for file in ksu_module_susfs*.zip; do
             mv "$file" "Update/pctoolbox/SuSFS-1.5.2+.zip"
           done
