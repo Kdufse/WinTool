@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 name: CI Build PC-Toolbox
-=======
-name: CI Build PC-Toolbox
->>>>>>> ceabb710a15d2f34c69339de45be39b069c54d27
 on:
   workflow_dispatch:
 
