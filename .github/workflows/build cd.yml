@@ -37,6 +37,10 @@ jobs:
           $version = "${{ github.event.inputs.VERSION }}"
           (Get-Content -Path "build\PC-Toolbox.ps1" -Raw) -replace '\$Version = "CUSTOMER"', "`$Version = `"$version`"" | Set-Content -Path "build\PC-Toolbox.ps1"
 
+      - name: Pack PC-Toolbox for Release
+        run: |
+          Compress-Archive -Path build\* -DestinationPath 压缩包名.zip
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -50,6 +54,6 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
           tag: ${{ steps.parse_version.outputs.VERSION }}
           artifacts: |
-            tools/build/kptools-linux
+            build\PC-Toolbox
           allowUpdates: true
           replacesArtifacts: true
