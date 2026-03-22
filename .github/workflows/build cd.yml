@@ -48,6 +48,18 @@ jobs:
           path: build\
           compression-level: 7
 
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        with:
+          tag_name: ${{ github.event.input.VERSION }}  # 使用推送的 tag 名称
+          release_name: PC-Toolbox ${{ github.event.input.VERSION }}
+          draft: false
+          prerelease: false
+          body: " "
+
       - name: Release
         uses: ncipollo/release-action@v1.14.0
         with:
