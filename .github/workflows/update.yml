@@ -1,4 +1,4 @@
-name: Fetch Latest Release
+name: Update Modules
 on:
   workflow_dispatch:
 
