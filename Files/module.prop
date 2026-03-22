@@ -1,0 +1,6 @@
+id=Android_Base-hide_Next
+name=Android Base-hide Next
+version=2025.10.21
+versionCode=2025.10.21
+author=Kdufse
+description=ABNToolbox的辅助模块，本模块除了安装隐藏模块，本身自带过牛头30的Futile Hide(10)的功能，不建议移除

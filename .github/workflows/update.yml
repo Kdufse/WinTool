@@ -1,0 +1,67 @@
+name: Fetch Latest Release
+on:
+  workflow_dispatch:
+
+jobs:
+  fetch-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Environment
+        run: |
+          sudo apt install zip
+          
+      - name: Update Tricky-Store
+        uses: robinraju/release-downloader@v1.12
+        with:
+          repository: "5ec1cff/Tricky-Store"
+          latest: true
+          fileName: "Tricky-Store*"
+          out-file-path: "Update/pctoolbox/TrickyStore.zip"
+
+      - name: Update Zygisk-Next
+        uses: robinraju/release-downloader@v1.12
+        with:
+          repository:
+          latest: true
+          fileName: "Zygisk-Next*"
+          out-file-path: "Update/pctoolbox/Zygisk_Modules/Zygisk-Next.zip"
+
+      - name: Update SuSFS
+        uses: robinraju/release-downloader@v1.12
+        with:
+          repository: "sidex15/susfs4ksu-module"
+          latest: true
+          fileName: "ksu_module_susfs*"
+          out-file-path: "Update/pctoolbox/ksu/SuSFS-1.5.2+.zip"
+
+      - name: Update LSPosed (JingMatrix)
+        uses: robinraju/release-downloader@v1.12
+        with:
+          repository: JingMatrix/LSPosed
+          latest: true
+          fileName: "*release"
+          out-file-path: "Update/pctoolbox/LSPosed.zip"
+
+      - name: Pack Modules ZIP
+        run: |
+          cp Files/customize.sh Update/customize.sh
+          cp Files/module.prop Update/module.prop
+          zip -r Modules.zip Update/
+
+      - name: 上传目录
+        uses: actions/upload-artifact@v7
+        with:
+          name: Modules.zip
+          path: Update/Modules.zip
+          
+
+      - name: Commit and push files
+        run: |
+          cp Update/Modules.zip Files/Modules.zip
+          git add Files/Modules.zip
+          git diff --cached --quiet || git commit -m "chore: update Modules.zip in Files directory [skip ci]"
+          git push origin HEAD:${{ github.ref_name }}
