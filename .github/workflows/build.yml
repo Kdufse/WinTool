@@ -1,4 +1,4 @@
-name: CI Build PC-Toolbox
+name: Build PC-Toolbox
 on:
   workflow_dispatch:
 
