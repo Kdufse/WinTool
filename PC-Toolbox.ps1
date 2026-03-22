@@ -46,7 +46,7 @@ Install-Module -Name 7Zip4Powershell -Scope CurrentUser -Force
 }
 
 function Check-Version {
-$Version = "1.0.0"
+$Version = "CUSTOMER"
 $owner = "Kdufse"
 $repo = "PCToolbox"
 $localVersion = $Version

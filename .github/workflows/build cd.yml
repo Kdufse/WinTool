@@ -1,6 +1,12 @@
-name: [CI]Build PC-Toolbox
+name: [CD]Build PC-Toolbox
 on:
   workflow_dispatch:
+    inputs:
+      VERSION:
+        type: string
+        description: "版本"
+        required: true
+        default: ""
 
 jobs:
   build:
@@ -26,9 +32,24 @@ jobs:
           Copy-Item -Path UseCustomPS.bat -Destination build\UseCustomPS.bat
           Move-Item -Path build\bin\platform-tools\* -Destination build\bin\
 
+      - name: Update Version
+        run: |
+          $version = "${{ github.event.inputs.VERSION }}"
+          (Get-Content -Path "build\PC-Toolbox.ps1" -Raw) -replace '\$Version = "CUSTOMER"', "`$Version = `"$version`"" | Set-Content -Path "build\PC-Toolbox.ps1"
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: PC-Toolbox
           path: build\
           compression-level: 7
+
+      - name: Release
+        uses: ncipollo/release-action@v1.14.0
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          tag: ${{ steps.parse_version.outputs.VERSION }}
+          artifacts: |
+            tools/build/kptools-linux
+          allowUpdates: true
+          replacesArtifacts: true
