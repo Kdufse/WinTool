@@ -12,6 +12,8 @@ jobs:
 
       - name: Install Environment
         run: |
+          sudo apt update
+          sudo apt install -y gh
           sudo apt install zip
           
       - name: Update Tricky-Store
@@ -37,7 +39,7 @@ jobs:
 
       - name: Update LSPosed (JingMatrix)
         run: |
-          gh release download --latest --repo actions/checkout --pattern 'LSPosed*release.zip'
+          gh release download --latest --repo JingMatrix/LSPosed --pattern 'LSPosed*release.zip'
           for file in LSPosed*.zip; do
             mv "$file" "Update/pctoolbox/LSPosed.zip"
           done
