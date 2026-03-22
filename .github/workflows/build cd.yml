@@ -39,7 +39,7 @@ jobs:
 
       - name: Pack PC-Toolbox for Release
         run: |
-          Compress-Archive -Path build\* -DestinationPath 压缩包名.zip
+          Compress-Archive -Path build\* -DestinationPath PC-Toolbox.zip.zip
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
@@ -54,6 +54,6 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
           tag: ${{ steps.parse_version.outputs.VERSION }}
           artifacts: |
-            build\PC-Toolbox
+            build\PC-Toolbox.zip
           allowUpdates: true
           replacesArtifacts: true
