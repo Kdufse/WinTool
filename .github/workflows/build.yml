@@ -1,6 +1,12 @@
-name: Build PC-Toolbox
+name: Build WinTool
 on:
   workflow_dispatch:
+  version:
+    description: '构建版本'
+    required: true
+    default: ''
+    type: string
+  
 
 jobs:
   build:
