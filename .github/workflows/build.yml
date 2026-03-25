@@ -28,18 +28,18 @@ jobs:
       - name: Other work
         run: |
           Remove-Item build\platform.zip
-          Copy-Item -Path PC-Toolbox.ps1 -Destination build\PC-Toolbox.ps1
+          Copy-Item -Path WinTool.ps1 -Destination build\WinTool.ps1
           Copy-Item -Path UseCustomPS.bat -Destination build\UseCustomPS.bat
           Move-Item -Path build\bin\platform-tools\* -Destination build\bin\
 
       - name: Update Version
         run: |
           $version = "${{ github.event.inputs.VERSION }}"
-          (Get-Content -Path "build\PC-Toolbox.ps1" -Raw) -replace '\$Version = "CUSTOMER"', "`$Version = `"$version`"" | Set-Content -Path "build\PC-Toolbox.ps1"
+          (Get-Content -Path "build\WinTool.ps1" -Raw) -replace '\$Version = "CUSTOMER"', "`$Version = `"$version`"" | Set-Content -Path "build\WinTool.ps1"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PC-Toolbox
+          name: WinTool
           path: build\
           compression-level: 7
