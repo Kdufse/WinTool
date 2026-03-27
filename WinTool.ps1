@@ -1,4 +1,4 @@
-function Main-Menu {
+﻿function Main-Menu {
 Clear-Host
 Write-Host "————————————————————WinTool————————————————————"
 Write-Host "                   Power-Shell"
@@ -838,7 +838,7 @@ switch ([int]$status) {
 function Win-Special-Zone {
 Clear-Host
 Write-Host "————————————————————Windows专区————————————————————"
-Write-Host "[1]一键设置Windows"
+Write-Host "[1]一键设置Windows           [2]安装软件包"
 
 $WSZoneInputs = Read-Host "请输入你需要的功能(1~9)"
 switch ([int]$WSZoneInputs) {
@@ -848,13 +848,19 @@ switch ([int]$WSZoneInputs) {
         Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "HideFileExt" -Value "1" -Force #显示文件扩展名
         Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock" -Name "AllowDevelopmentWithoutDevLicense" -Value "1" -Force #开发者选项
         Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Sudo" -Name "Enable" -Value "3" -Force #Sudo
-        1
-        1
-        1
+    }
+
+    "2"{
+        Write-Host "————————————————————安装软件包————————————————————"
+        Write-Host "      开发环境         |"
+        Write-Host "[1]VisualStodioCode   |"
+        Write-Host "[2]Python3.13"
+        Write-Host "[3]Git"
+        Write-Host "[4]GitHub-CLI"
     }
 }
 }
 
-Main-Menu
 
->>>>>>> 891f7b850b481048f70faf19dea38de64092b41a
+
+Main-Menu
