@@ -1,11 +1,17 @@
-﻿function Main-Menu {
+﻿Clear-Host
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+[Console]::ResetColor()
+
+function Main-Menu {
 Clear-Host
 Write-Host "————————————————————WinTool————————————————————"
 Write-Host "                   Power-Shell"
 Write-Host "                    By Kdufse"
 Write-Host "———————————————————————————————————————————————"
-Write-Host "[1]隐藏环境             [2]APatch嵌入KPM"
-Write-Host "[3]解锁BL专区           [4]CMD窗口"
+Write-Host "[1]隐藏环境"
+Write-Host "[2]APatch嵌入KPM"
+Write-Host "[3]解锁BL专区"
+Write-Host "[4]CMD窗口"
 Write-Host "[5]Windows专区"
 $MainEnter = Read-Host "请在上方选择你想要的功能(1~9)："
 switch ([int]$MainEnter) {
@@ -415,29 +421,6 @@ switch ([int]$status) {
 }
 }
 
-function Win-Special-Zone {
-Clear-Host
-Write-Host "————————————————————Windows专区————————————————————"
-Write-Host "[1]一键设置Windows"
-
-$WSZoneInputs = Read-Host "请输入你需要的功能(1~9)"
-switch ([int]$WSZoneInputs) {
-    "1" {
-        powercfg /hibernate on #休眠
-        Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "Hidden" -Value "1" -Force #显示隐藏文件
-        Set-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "HideFileExt" -Value "1" -Force #显示文件扩展名
-        Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock" -Name "AllowDevelopmentWithoutDevLicense" -Value "1" -Force #开发者选项
-        Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Sudo" -Name "Enable" -Value "3" -Force #Sudo
-        1
-        1
-        1
-    }
-}
-}
-
-Main-Menu
-
-=======
 function Goto-Where {
 Write-Host "———————————————————————————————————————————————"
 Read-Host "按任意键返回主菜单"
@@ -784,7 +767,8 @@ Clear-Host
 Write-Host "———————————————————————————————————————————————"
 Write-Host "                 Open-Bootloade"r
 Write-Host "———————————————————————————————————————————————"
-Write-Host "[1]解锁码解锁              [2]一加解锁"
+Write-Host "[1]解锁码解锁"
+Write-Host "[2]一加解锁"
 $OpenBL = Read-Host "请输入你需要的内容"
 switch ([int]$OpenBL) {
     "1" {
@@ -836,9 +820,10 @@ switch ([int]$status) {
 }
 
 function Win-Special-Zone {
-Clear-Host
+
 Write-Host "————————————————————Windows专区————————————————————"
-Write-Host "[1]一键设置Windows           [2]安装软件包"
+Write-Host "[1]一键设置Windows"
+Write-Host "[2]安装软件包"
 
 $WSZoneInputs = Read-Host "请输入你需要的功能(1~9)"
 switch ([int]$WSZoneInputs) {
@@ -849,18 +834,91 @@ switch ([int]$WSZoneInputs) {
         Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock" -Name "AllowDevelopmentWithoutDevLicense" -Value "1" -Force #开发者选项
         Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Sudo" -Name "Enable" -Value "3" -Force #Sudo
     }
-
-    "2"{
-        Write-Host "————————————————————安装软件包————————————————————"
-        Write-Host "      开发环境         |"
-        Write-Host "[1]VisualStodioCode   |"
-        Write-Host "[2]Python3.13"
-        Write-Host "[3]Git"
-        Write-Host "[4]GitHub-CLI"
+    "2" {
+        Install-Software
     }
 }
 }
 
-
+function Install-Software {
+    Clear-Host
+    Write-Host "————————————————————安装软件包————————————————————"
+    Write-Host "      开发环境           |        常用软件"
+    Write-Host "[1] Visual Studio Code   |   [8]  Steam"
+    Write-Host "[2] Python 3.13          |   [9]  7Zip"
+    Write-Host "[3] Git                  |   [10] Telegram"
+    Write-Host "[4] GitHub CLI           |"
+    Write-Host "[5] Rustlang             |"
+    Write-Host "[6] Java21               |"
+    Write-Host "[7] Go                   |"
+    Write-Host "[0] 返回主菜单"
+    
+    $SoftwareInput = Read-Host "请选择要安装的软件(0~4)"
+    
+    switch ([int]$SoftwareInput) {
+        1 {
+            Write-Host "正在安装 Visual Studio Code..."
+            winget install Microsoft.VisualStudioCode
+            Install-Software
+        }
+        2 {
+            Write-Host "正在安装 Python 3.13..."
+            winget install Python.Python.3.13
+            Install-Software
+        }
+        3 {
+            Write-Host "正在安装 Git..."
+            winget install Git.Git
+            Install-Software
+        }
+        4 {
+            Write-Host "正在安装 GitHub CLI..."
+            winget install --id Github.cli
+            Install-Software
+        }
+        5 {
+            Write-Host "正在安装 Rustlang"
+            winget install Rustlang.Rustup
+            Install-Software
+        }
+        6 {
+            Write-Host "正在安装 Java21 (OPenJDK)"
+            winget install EclipseAdoptium.Temurin.21.JDK
+            Install-Software
+        }
+        7 {
+            Write-Host "正在安装 Go"
+            winget install GoLang.Go
+            Install-Software
+        }
+        8 {
+            Write-Host "正在安装 Steam"
+            winget install Valve.Steam
+            Install-Software
+        }
+        9 {
+            Write-Host "正在安装 7Zip"
+            winget install 7zip.7zip
+            Install-Software
+        }
+        10 {
+            Write-Host "正在安装 Telegram"
+            winget install Telegram.TelegramDesktop
+            Install-Software
+        }
+        0 {
+            return
+        }
+        default {
+            Write-Host "输入无效，请重新选择"
+            pause
+            Install-Software
+        }
+    }
+    
+    Write-Host "`n安装完成！"
+    pause
+    Install-Software
+}
 
 Main-Menu
