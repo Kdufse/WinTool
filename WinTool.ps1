@@ -32,13 +32,13 @@ Main-Menu
 
 function Check-PSVersion {
 if ($PSVersionTable.PSVersion.Major -lt 5) {
-    Write-Host "当前 PowerShell 版本不符合PC-Toolbox的运行环境"
+    Write-Host "当前 PowerShell 版本不符合WinTool的运行环境"
     Write-Host "请你自行下载最新版本的Powershell"
     Start-Process "https://github.com/PowerShell/PowerShell/releases/latest"
     Write-Host "安装完成后执行UseCustomPowershell"
     Pause
 } else {
-    Write-Host "当前 PowerShell 版本符合PC-Toolbox的运行环境"
+    Write-Host "当前 PowerShell 版本符合WinTool的运行环境"
 }
 
 Pause
@@ -119,7 +119,7 @@ function Download-File {
 }
 
 function Hide-Environment {
-Download-File -Url "https://hk.gh-rpxoy.org/ttps://github.com/Kdufse/PC-Toolbox/raw/refs/heads/main/Files/Modules.zip" -Output ".\Download\Modules.zip"
+Download-File -Url "https://g.blfrp.cn/ttps://github.com/Kdufse/WinTool/raw/refs/heads/main/Files/Modules.zip" -Output ".\Download\Modules.zip"
 .\bin\adb.exe push ".\Download\Modules.zip" /sdcard/Modules.zip
 .\bin\adb.exe shell "magisk --install-module /sdcard/Modules.zip" | Out-Null
 .\bin\adb.exe shell"apd module install /sdcard/Modules.zip" | Out-Null
@@ -308,7 +308,7 @@ if (-not (Test-Path ".\bin")) { New-Item -ItemType Directory -Path ".\bin" -Forc
 Download-File -Url "https://g.blfrp.cn/https://github.com/bmax121/KernelPatch/releases/latest/download/kptools-msys2-win.7z" -Output ".\Download\kptools.7z"
 Download-File -Url "https://g.blfrp.cn/https://github.com/bmax121/KernelPatch/releases/latest/download/kpimg-android" -Output ".\bin\kpimg"
 Download-File -Url "https://g.blfrp.cn/https://github.com/svoboda18/magiskboot/releases/latest/download/magiskboot.zip" -Output ".\Download\magiskboot.7z"
-Download-File -Url "https://gh-proxy.org/https://raw.githubusercontent.com/Kdufse/PC-Toolbox/main/Files/NoHello.kpm" -Output ".\Download\NoHello.KPM"
+Download-File -Url "https://gh-proxy.org/https://raw.githubusercontent.com/Kdufse/WinTool/main/Files/NoHello.kpm" -Output ".\Download\NoHello.KPM"
 
 # 解压文件（使用$null重定向）
 Expand-7Zip -ArchiveFileName ".\Download\kptools.7z" -TargetPath "$env:TEMP\7z_temp" | Out-Null
@@ -429,13 +429,13 @@ Main-Menu
 
 function Check-PSVersion {
 if ($PSVersionTable.PSVersion.Major -lt 5) {
-    Write-Host "当前 PowerShell 版本不符合PC-Toolbox的运行环境"
+    Write-Host "当前 PowerShell 版本不符合WinTool的运行环境"
     Write-Host "请你自行下载最新版本的Powershell"
     Start-Process "https://github.com/PowerShell/PowerShell/releases/latest"
     Write-Host "安装完成后执行UseCustomPowershell"
     Pause
 } else {
-    Write-Host "当前 PowerShell 版本符合PC-Toolbox的运行环境"
+    Write-Host "当前 PowerShell 版本符合WinTool的运行环境"
 }
 
 Pause
@@ -697,7 +697,7 @@ if (-not (Test-Path ".\bin")) { New-Item -ItemType Directory -Path ".\bin" -Forc
 Download-File -Url "https://g.blfrp.cn/https://github.com/bmax121/KernelPatch/releases/latest/download/kptools-msys2-win.7z" -Output ".\Download\kptools.7z"
 Download-File -Url "https://g.blfrp.cn/https://github.com/bmax121/KernelPatch/releases/latest/download/kpimg-android" -Output ".\bin\kpimg"
 Download-File -Url "https://g.blfrp.cn/https://github.com/svoboda18/magiskboot/releases/latest/download/magiskboot.zip" -Output ".\Download\magiskboot.7z"
-Download-File -Url "https://gh-proxy.org/https://raw.githubusercontent.com/Kdufse/PC-Toolbox/main/Files/NoHello.kpm" -Output ".\Download\NoHello.KPM"
+Download-File -Url "https://gh-proxy.org/https://raw.githubusercontent.com/Kdufse/WinTool/main/Files/NoHello.kpm" -Output ".\Download\NoHello.KPM"
 
 # 解压文件（使用$null重定向）
 Expand-7Zip -ArchiveFileName ".\Download\kptools.7z" -TargetPath "$env:TEMP\7z_temp" | Out-Null
