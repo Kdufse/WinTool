@@ -1,4 +1,4 @@
-$Host.UI.RawUI.WindowTitle = "Build WinTool"
+﻿$Host.UI.RawUI.WindowTitle = "Build WinTool"
 trap {
     Write-Host "Error captured: $_" -ForegroundColor Red
     Write-Host "Press any key to continue..." -ForegroundColor Gray
@@ -155,9 +155,3 @@ if ($?) {
 }
 
 Pause
-
-
-
-
-
->>>>>>> 891f7b850b481048f70faf19dea38de64092b41a
