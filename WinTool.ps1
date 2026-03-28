@@ -515,14 +515,6 @@ function Download-File {
     }
 }
 
-function Hide-Environment {
-Download-File -Url "https://g.blfrp.cn/https://github.com/Kdufse/PC-Toolbox/raw/refs/heads/main/Files/Modules.zip" -Output ".\Download\Modules.zip"
-.\bin\adb.exe push ".\Download\Modules.zip" /sdcard/Modules.zip
-.\bin\adb.exe shell "magisk --install-module /sdcard/Modules.zip" | Out-Null
-.\bin\adb.exe shell"apd module install /sdcard/Modules.zip" | Out-Null
-.\bin\adb.exe shell"ksud module install /sdcard/Modules.zip" | Out-Null
-}
-
 function Boot-Extract {
 $outputDir = ".\extracted"
 $timestamp = Get-Date -Format "yyyyMMdd_HHmmss"
